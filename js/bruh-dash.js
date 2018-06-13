@@ -40,64 +40,160 @@ global.bruhdash = {
   },
 
   // returns an array with all elements except for the last element
-  initial: function () {
-
+  initial: function (arr) {
+    var newArr = [];
+    for(var i=0;i<arr.length-1;i++){
+      newArr.push(arr[i])
+    }
+    return newArr;
   },
   
   // returns an array with all falsey values removed
-  compact: function() {
-
+  compact: function(arr) {
+      if(arr.filter(false)){
+      arr.filter(false).pop()}else{};
+    return arr;
   },
 
   // creates a slice of an array from the start index up to but not including the end index
-  slice: function () {
-
+  slice: function (arr, num1, num2) {
+    return arr.slice(num1, num2);
   },
 
   // returns a slice of array with n elements dropped from the beignning
-  drop: function(){
-
+  drop: function(arr, n){
+    if(n === undefined){
+      return arr.splice(1);}
+      else {return arr.splice(n)}
   },
 
   // returns a slice of array with n elements dropped from the end
-  dropRight: function() {
-
+  dropRight: function(arr, n){
+      if(n === undefined){
+        arr.pop();
+        return arr;} else{
+          for(var i=0;i<n;i++){
+            arr.pop();
+          }
+        } return arr;
   },
 
   // creates a slice of an array with n elements taken from the beginning
-  take: function () {
-
+  take: function(arr, n){
+    if(n === undefined){
+      return arr.slice(0,1)
+    }else if(n>arr.length){
+      return arr
+    }else{
+      newArr = [];
+      for (var i =0; i<n; i++){
+        newArr.push(arr[i])
+      }
+      return newArr;
+    } 
   },
 
   // creates a slice of an array with n elements taken from the end
-  takeRight: function () {
-
+  takeRight: function(arr, n){
+    if(n === undefined){
+      return arr.slice(arr.length-1,arr.length)
+    }else if(n>arr.length){
+      return arr;
+    }else{
+      newArr = [];
+      for(var i=arr.length-1; i>(arr.length-n-1); i--){
+        newArr.unshift(arr[i]);
+      }
+      return newArr;
+    } 
   },
 
   // fills elements of array with specified value from the start index
   // up to but not including the end index
-  fill: function() {
-
+  fill: function(arr, num, start, end) {
+    if(start === undefined || end === undefined){
+      var origLength = arr.length;
+      arr.splice(0, arr.length, num);
+      for (var i=0;i<origLength-1;i++){
+        arr.splice(0, 0, num)
+      }
+      return arr;
+    }else{
+      arr.splice(start, end-1, num);
+      for (var i=0;i<end-start-1;i++){
+        arr.splice(start, 0, num)
+      }
+      return arr;
+    };
   },
 
   // removes all given values from an array
-  pull: function () {
-
+  pull: function (arr, remove1, remove2) {
+    for(var i=0;i<arr.length;i++){
+      if(arr[i] === remove1){
+        arr.splice(i,1);
+        console.log(arr);
+      }else{}
+    }
+    for(var i=0;i<arr.length;i++){
+      if(arr[i] === remove2){
+        arr.splice(i,1);
+        console.log(arr);
+      }else{}
+    }
+    return arr;
   },
 
   // removes elements of an array corresponding to the given indices
-  pullAt: function () {
-
+  pullAt: function (arr, [pull1, pull2]) {
+    var newArr = [];
+    for(var i=0;i<arr.length;i++){
+      if(i === pull1){
+        newArr.push(arr[i]);
+        console.log(arr);
+      }else{}
+    }
+    for(var i=0;i<arr.length;i++){
+      if(i === pull2){
+        newArr.push(arr[i]);
+        console.log(arr);
+      }else{}
+    }
+    return newArr;
   },
 
   // creates an array excluding all the specified values
-  without: function() {
-
+  without: function (arr, remove1, remove2) {
+    for(var i=0;i<arr.length;i++){
+      if(arr[i] === remove1){
+        arr.splice(i,1);
+        console.log(arr);
+      }else{}
+    }
+    for(var i=0;i<arr.length;i++){
+      if(arr[i] === remove2){
+        arr.splice(i,1);
+        console.log(arr);
+      }else{}
+    }
+    return arr;
   },
 
   // returns an array with specified values excluded
-  difference: function() {
-
+  difference: function (arr, [remove1, remove2]) {
+    for(var i=0;i<arr.length;i++){
+      if(arr[i] === remove1){
+        arr.splice(i,1);
+        console.log(arr);
+      }else{}
+    }
+    for(var i=0;i<arr.length;i++){
+      if(arr[i] === remove2){
+        arr.splice(i,1);
+        console.log(arr);
+      }else{}
+    }
+    return arr;
   },
 
   /*******************
