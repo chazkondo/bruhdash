@@ -201,13 +201,103 @@ global.bruhdash = {
    *******************/ 
 
   // creates an array of grouped elements
-  zip: function () {
 
+  /* Uhh pretty sure this is what zip does according to lo dash
+
+  zip: function () {
+    var arr1 = [];
+    var arr2 = [];
+    var resultArr = [];
+    for(var i=0;i<arguments.length;i++){
+      arr1.push(arguments[i][0]);
+      arr2.push(arguments[i][1]);
+    }
+    resultArr.push(arr1);
+    resultArr.push(arr2);
+    return resultArr;
   },
+
+  */
+
+/* Okay this works but it's the cheat method cuz I know how many inputs there are
+
+ zip: function () {
+  var originalArr = [];
+  var resultArr = [];
+  var testArr1 = [];
+  var testArr2 = [];
+  var testArr3 = [];
+  for(var i=0;i<arguments.length;i++){
+    originalArr.push(arguments[i]);
+    console.log(originalArr);
+  }
+    for(var i=0;i<originalArr.length;i++){
+      var toPush = originalArr[i].shift();
+      console.log(toPush);
+      testArr1.push(toPush);
+      console.log(testArr1);
+    }
+    resultArr.push(testArr1);
+    for(var i=0;i<originalArr.length;i++){
+      var toPush = originalArr[i].shift();
+      console.log(toPush);
+      testArr2.push(toPush);
+      console.log(testArr2);
+    }
+    resultArr.push(testArr2);
+    for(var i=0;i<originalArr.length;i++){
+      var toPush = originalArr[i].shift();
+      console.log(toPush);
+      testArr3.push(toPush);
+      console.log(testArr3);
+    }
+    resultArr.push(testArr3);
+  return resultArr;
+},
+
+*/
+
+zip: function () {
+  var originalArr = [];
+  var resultArr = [];
+  for(var i=0;i<arguments.length;i++){
+    originalArr.push(arguments[i]);
+  }
+  while((originalArr[0].length)>0){
+    var testArr = [];
+    console.log(originalArr);
+    for(var i=0;i<originalArr.length;i++){
+      var toPush = originalArr[i].shift();
+      console.log(toPush);
+      testArr.push(toPush);
+      console.log(testArr);
+    }
+    resultArr.push(testArr);
+  }
+  console.log(originalArr.length);
+  return resultArr;
+},
 
   // creates an array of grouped elements in their pre-zip configuration
   unzip: function () {
-
+    var originalArr = [];
+    var resultArr = [];
+    for(var i=0;i<arguments.length;i++){
+      originalArr.push(arguments[i]);
+    }
+    while((originalArr[0].length)>0){
+      var testArr = [];
+      console.log(originalArr);
+      for(var i=0;i<originalArr.length;i++){
+        var toPush = originalArr[i].shift();
+        console.log(toPush);
+        testArr.push(toPush);
+        console.log(testArr);
+      }
+      resultArr.push(testArr);
+    }
+    console.log(originalArr.length);
+    return resultArr;
   },
 
   // creates an array of elements into groups of length of specified size
