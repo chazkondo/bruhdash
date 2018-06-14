@@ -279,11 +279,11 @@ zip: function () {
 },
 
   // creates an array of grouped elements in their pre-zip configuration
-  unzip: function () {
+  unzip: function (arr) {
     var originalArr = [];
     var resultArr = [];
-    for(var i=0;i<arguments.length;i++){
-      originalArr.push(arguments[i]);
+    for(var i=0;i<arr.length;i++){
+      originalArr.push(arr[i]);
     }
     while((originalArr[0].length)>0){
       var testArr = [];
@@ -301,8 +301,24 @@ zip: function () {
   },
 
   // creates an array of elements into groups of length of specified size
-  chunk: function(){
-
+  chunk: function(arr, num) {
+    var newArr = [];
+    var resultArr = [];
+    if(arr.length === 0 || num === 0){
+      return [];
+    }else{
+      for(var i=0;i<arr.length;i++){
+        if(newArr.length === num){
+          resultArr.push(newArr);
+          newArr = [];
+          newArr.push(arr[i]);
+        }else{
+          newArr.push(arr[i]);
+        }
+      }
+    }
+    resultArr.push(newArr);
+    return resultArr;
   },
 
   // iterates over elements of a collection and invokes iteratee for each element
