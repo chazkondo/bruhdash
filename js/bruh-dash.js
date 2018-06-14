@@ -323,9 +323,20 @@ zip: function () {
 
   // iterates over elements of a collection and invokes iteratee for each element
   // Note: this should work for arrays and objects
-  forEach: function() {
 
+  forEach: function(input){
+    var result = [];
+  if(Array.isArray(input) === true){
+  input.forEach(function(element) {
+    console.log(element);
+    result.push(element);
+  });}else{for(i in input){
+    console.log(input[i]);
+    result.push(input[i]);
+  }}
+      return result;
   },
+
 
   // creates an array of values by running each element in collection thru the iteratee
   // Note: this should work for arrays and objects
