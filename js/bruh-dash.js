@@ -50,10 +50,8 @@ global.bruhdash = {
   
   // returns an array with all falsey values removed
   compact: function(arr) {
-      if(arr.filter(false)){
-      arr.filter(false).pop()}else{};
-    return arr;
-  },
+        return arr.filter(Boolean);
+      },
 
   // creates a slice of an array from the start index up to but not including the end index
   slice: function (arr, num1, num2) {
@@ -178,23 +176,45 @@ global.bruhdash = {
     }
     return arr;
   },
+  
+  //   Jamie Method - 
+  //   without: function(arr, [a, b]) {
+  //       // console.log(arr,a,b);
+  //       var newArr = []
+  //       for (var i=0; i<arr.length; i++) {
+  //         if (arr[i] != a && arr[i] != b) {
+  //           newArr.push(arr[i]);
+  //         }
+  //       }
+  //       return newArr;
+  //     },
 
   // returns an array with specified values excluded
-  difference: function (arr, [remove1, remove2]) {
-    for(var i=0;i<arr.length;i++){
-      if(arr[i] === remove1){
-        arr.splice(i,1);
-        console.log(arr);
-      }else{}
-    }
-    for(var i=0;i<arr.length;i++){
-      if(arr[i] === remove2){
-        arr.splice(i,1);
-        console.log(arr);
-      }else{}
-    }
-    return arr;
-  },
+
+  // difference: function(arr1, arr2) {
+  //       var answer = arr1.filter(f => !arr2.includes(f));
+  //       return answer;
+  //     },
+
+  difference: function(arr, arr2) {
+  
+    //remove duplicates from arr2
+  var filteredArr2 = arr2.filter(function(elem, index, self) {
+      return index === self.indexOf(elem);
+  });
+    console.log(filteredArr2);
+  
+        for(var j=0;j<filteredArr2.length;j++){
+          var numBeingTested = filteredArr2[j];
+          for(var i=0;i<arr.length;i++){
+            if(arr[i] === numBeingTested){
+              arr.splice(i,1);
+  
+            }else {}
+          }
+        }
+      return arr;
+    },
 
   /*******************
    *  STRETCH GOALS! *
@@ -278,6 +298,19 @@ zip: function () {
   return resultArr;
 },
 
+//   zip: function (arr1, arr2) {
+//       console.log(arr1, arr2);
+//       var newArr = [];
+//       var innerArr = [];
+//       for (var i=0; i<arr1.length; i++) {
+//         innerArr.push(arr1[i]);
+//         innerArr.push(arr2[i]);
+//         newArr.push(innerArr);
+//         innerArr = [];
+//       }
+//       return newArr;
+//     },
+
   // creates an array of grouped elements in their pre-zip configuration
   unzip: function (arr) {
     var originalArr = [];
@@ -324,7 +357,20 @@ zip: function () {
   // iterates over elements of a collection and invokes iteratee for each element
   // Note: this should work for arrays and objects
 
-  forEach: function(input){
+  // forEach: function(input){
+  //   var result = [];
+  // if(Array.isArray(input) === true){
+  // input.forEach(function(element) {
+  //   console.log(element);
+  //   result.push(element);
+  // });}else{for(i in input){
+  //   console.log(input[i]);
+  //   result.push(input[i]);
+  // }}
+  //     return result;
+  // },
+
+  forEach: function(input, funct){
     var result = [];
   if(Array.isArray(input) === true){
   input.forEach(function(element) {
@@ -336,7 +382,6 @@ zip: function () {
   }}
       return result;
   },
-
 
   // creates an array of values by running each element in collection thru the iteratee
   // Note: this should work for arrays and objects
