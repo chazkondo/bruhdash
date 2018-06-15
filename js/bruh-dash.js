@@ -451,7 +451,22 @@ zip: function () {
   // Reduces the collection to a value which is the accumulated result of running each element
   // in the collection through an iteratee
   // Note: this should work for arrays and objects
-  reduce: function() {
-    
-  }
+
+  reduce: function(arrObj, funk) {
+    var sum = 0;
+    console.log(arrObj, funk);
+    if (Array.isArray(arrObj) === true) {
+      for (var i=0; i<arrObj.length; i++) {
+        sum += arrObj[i];
+        var result = funk(sum,0);
+      }
+      return result;
+    } else {
+      for (var i in arrObj) {
+        sum += arrObj[i]
+        var result = funk(sum,0);
+      }
+      return result;
+    } 
+  }
 };
