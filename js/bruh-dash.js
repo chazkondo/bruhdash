@@ -370,17 +370,31 @@ zip: function () {
   //     return result;
   // },
 
-  forEach: function(input, funct){
-    var result = [];
-  if(Array.isArray(input) === true){
-  input.forEach(function(element) {
-    console.log(element);
-    result.push(element);
-  });}else{for(i in input){
-    console.log(input[i]);
-    result.push(input[i]);
-  }}
-      return result;
+  // forEach: function(input, funct){
+  //   var result = [];
+  // if(Array.isArray(input) === true){
+  // input.forEach(function(element) {
+  //   console.log(element);
+  //   result.push(element);
+  // });}else{for(i in input){
+  //   console.log(input[i]);
+  //   result.push(input[i]);
+  // }}
+  //     return result;
+  // },
+
+  forEach: function(arrOrObj, funk) {
+      if(Array.isArray(arrOrObj) === true){
+        console.log(arrOrObj, funk);
+        for (var i=0; i<arrOrObj.length; i++) {
+          var result = funk(arrOrObj[i]);
+        }
+        return result;
+      }else{
+        for (var i in arrOrObj){
+          var result = funk(arrOrObj[i])
+        }
+      }
   },
 
   // creates an array of values by running each element in collection thru the iteratee
