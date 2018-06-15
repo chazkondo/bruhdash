@@ -394,13 +394,28 @@ zip: function () {
         for (var i in arrOrObj){
           var result = funk(arrOrObj[i])
         }
+        return result;
       }
   },
 
   // creates an array of values by running each element in collection thru the iteratee
   // Note: this should work for arrays and objects
-  map: function() {
-
+  map: function(arrOrObj, funk) {
+      var resultArr = [];
+      if(Array.isArray(arrOrObj) === true){
+        console.log(arrOrObj, funk);
+        for (var i=0; i<arrOrObj.length; i++) {
+          var result = funk(arrOrObj[i]);
+          resultArr.push(result);
+        }
+        return resultArr;
+      }else{
+        for (var i in arrOrObj){
+          var result = funk(arrOrObj[i])
+          resultArr.push(result);
+        }
+        return resultArr;
+      }
   },
 
   /*************************
