@@ -424,8 +424,28 @@ zip: function () {
 
   // iterates over elements of a collection and returns all elements that the predicate returns truthy for
   // Note: this should work for arrays and objects
-  filter: function() {
-
+  filter: function(arrObj,funk) {
+        console.log(arrObj,funk);
+        if (Array.isArray(arrObj) === true) {
+          resultArr = [];
+          for (var i=0; i<arrObj.length; i++) {
+            if (funk(arrObj[i]) == true) {
+              var result = arrObj[i];
+              resultArr.push(result);
+            }
+          }
+    
+          return resultArr;
+        } else {
+          resultArr = [];
+          for (var i in arrObj) {
+            if (funk(arrObj[i]) == true) {
+              var result = arrObj[i];
+              resultArr.push(result);
+          }
+        } 
+          return resultArr;
+      }
   },
 
   // Reduces the collection to a value which is the accumulated result of running each element
